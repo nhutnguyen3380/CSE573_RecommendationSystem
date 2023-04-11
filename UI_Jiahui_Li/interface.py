@@ -110,7 +110,7 @@ class Ui_RecommenderSystem(object):
 
     def retranslateUi(self, RecommenderSystem):
         _translate = QtCore.QCoreApplication.translate
-        RecommenderSystem.setWindowTitle(_translate("RecommenderSystem", "MainWindow"))
+        RecommenderSystem.setWindowTitle(_translate("RecommenderSystem", "Recommender System"))
         self.TITLE_label.setText(_translate("RecommenderSystem", "Recommender System"))
         self.USERID_label.setText(_translate("RecommenderSystem", "USER ID"))
         for i in range(0, users_id.shape[0]+1):
