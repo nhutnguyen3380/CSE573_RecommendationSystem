@@ -17,7 +17,7 @@ class MainWindow(QMainWindow, Ui_RecommenderSystem):
 
         names_str = '\n'.join(new_rating.loc[new_rating['userId'] == int(user_id), 'movieName'].values.tolist())
 
-        self.textBrowser_3.setText(names_str)
+        self.RM_browser.setText(names_str)
 
 
 
