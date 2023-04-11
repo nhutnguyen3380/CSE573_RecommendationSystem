@@ -1,3 +1,9 @@
+"""
+Created on April 9th, 2023, 7:17:16 PM
+
+@author: Jiahui Li
+"""
+
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QLineEdit, QVBoxLayout, QWidget
 from interface import Ui_RecommenderSystem
 import sys
