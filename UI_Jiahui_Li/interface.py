@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
+"""
+Created on April 9th, 2023, 7:17:16 PM
 
-# Form implementation generated from reading ui file 'source.ui'
-#
-# Created by: PyQt5 UI code generator 5.9.2
-#
-# WARNING! All changes made in this file will be lost!
+@author: Jiahui Li
+"""
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import pandas as pd
