@@ -50,7 +50,7 @@ class Ui_RecommenderSystem(object):
         self.comboBox = QtWidgets.QComboBox(self.centralwidget)
         self.comboBox.setGeometry(QtCore.QRect(520, 70, 71, 21))
         self.comboBox.setObjectName("comboBox")
-        for i in range(0, users_id.shape[0]):
+        for i in range(0, users_id.shape[0]+1):
             self.comboBox.addItem("")
 
         #RM text browser
@@ -112,8 +112,8 @@ class Ui_RecommenderSystem(object):
         RecommenderSystem.setWindowTitle(_translate("RecommenderSystem", "Recommender System"))
         self.TITLE_label.setText(_translate("RecommenderSystem", "Recommender System"))
         self.USERID_label.setText(_translate("RecommenderSystem", "USER ID"))
-        for i in range(0, users_id.shape[0]):
-            self.comboBox.setItemText(i, _translate("MainWindow", str(i+1)))
+        for i in range(0, users_id.shape[0]+1):
+            self.comboBox.setItemText(i+1, _translate("MainWindow", str(i+1)))
 
 
         self.MF_label.setText(_translate("RecommenderSystem", "Matrix Factorization"))
