@@ -38,14 +38,18 @@ class MainWindow(QMainWindow, Ui_RecommenderSystem):
         names_str = '\n'.join(new_rating.loc[new_rating['userId'] == int(user_id), 'movieName'].values.tolist())
 
         self.RM_browser.setText(names_str)
-
+        
+        print(user_id)
         # *** Alex Modification ***
         # self.MF_browser.setText("Matrix Factorization")
         # self.NCF_browser.setText("Neural Collaborative Filtering")
         # user_id may need type casting - verify this when testing
-        self.MF_browser.setText(MatrixFactorization1.recommend(user_predictions_mf, model_mf, movie_list_mf, user_id))
-
-        self.NCF_browser.setText(NeuralCF.recommend(ratings_ncf, train_ncf, model_ncf, user_id))
+        
+        MF_str = '\n'.join(MatrixFactorization1.recommend(user_predictions_mf, model_mf, movie_list_mf, int(user_id)))
+        self.MF_browser.setText(MF_str)
+        
+        NCF_str = '\n'.join(NeuralCF.recommend(ratings_ncf, train_ncf, model_ncf, int(user_id)))
+        self.NCF_browser.setText(NCF_str)
         # *** Alex Modification ***
 
 
