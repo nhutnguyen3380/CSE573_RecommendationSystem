@@ -6,10 +6,22 @@ This is Group 7's movie recommendation system. The data we used to train and tes
 
 ### Dependencies
 * Python 3.9
-* libraries: Surprise, PyQt5, Tensorflow, Pandas, Scikit-learn, and Numpy
+* Libraries: 
+  * Surprise
+  * PyQt5
+  * Tensorflow
+  * Pandas
+  * Scikit-learn
+  * Numpy
+
+### Data  
+* [MovieLens 1M dataset](https://grouplens.org/datasets/movielens/1m/)
 
 ### Executing program
 * run main.py
+
+### Evaluation
+* 
 
 ## Authors
 Aaron Yu  
