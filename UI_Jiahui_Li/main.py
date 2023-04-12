@@ -15,8 +15,9 @@ import MatrixFactorization1
 import NeuralCF
 from sklearn.model_selection import train_test_split
 
-ratings_ncf = pd.read_csv('./ml-1m/ratings.dat', header=0, names=['user_id', 'movie_id', 'rating', 'timestamp'], sep="::")
-train_ncf, test_ncf = train_test_split(ratings_ncf, test_size=0.2, random_state=1)
+ratings_ncf, _, __, train_ncf, test_ncf = NeuralCF.get_data()
+# ratings_ncf = pd.read_csv('./ml-1m/ratings.dat', header=0, names=['user_id', 'movie_id', 'rating', 'timestamp'], sep="::")
+# train_ncf, test_ncf = train_test_split(ratings_ncf, test_size=0.2, random_state=1)
 model_ncf = NeuralCF.import_model('NCF.h5')
 
 data_mf, movie_list_mf, s_data_mf, test_mf = MatrixFactorization1.get_data()
@@ -48,7 +49,7 @@ class MainWindow(QMainWindow, Ui_RecommenderSystem):
         MF_str = '\n'.join(MatrixFactorization1.recommend(user_predictions_mf, model_mf, movie_list_mf, int(user_id)))
         self.MF_browser.setText(MF_str)
         
-        NCF_str = '\n'.join(NeuralCF.recommend(ratings_ncf, train_ncf, model_ncf, int(user_id)))
+        NCF_str = '\n'.join(NeuralCF.recommend(ratings_ncf, train_ncf, model_ncf, user_id))
         self.NCF_browser.setText(NCF_str)
         # *** Alex Modification ***
 

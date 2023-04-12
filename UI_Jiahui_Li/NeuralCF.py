@@ -102,8 +102,8 @@ def evaluate_model(model, test):
 
 def recommend(ratings, train, model, user_id):
     # get all unrated movies from user
-    unrated = list(set(ratings.movie_id).difference(set(train.loc[train['user_id'] == user_id].movie_id)))
-    user = pd.Series(data=[user_id] * len(unrated))
+    unrated = list(set(ratings.movie_id).difference(set(train.loc[train['user_id'] == int(user_id)].movie_id)))
+    user = pd.Series(data=[int(user_id)] * len(unrated))
     movie = pd.Series(data=unrated)
 
     y_hat = np.round(model.predict([user, movie]), decimals=2)
@@ -111,18 +111,26 @@ def recommend(ratings, train, model, user_id):
     # return the top 10 highest rated movies for user
     pred_ratings = list(zip(unrated, (i[0] for i in y_hat.tolist())))
     pred_ratings.sort(key = lambda x: x[1], reverse=True)
-    return list(i[0] for i in pred_ratings[:10])
 
-def main():
-    ratings, num_users, num_movies, train, test = get_data()
-    model = import_model('NCF.h5')
-    
-    # train a new model
-    if not model:
-        model = train_model(num_users, num_movies, train, test)
-    
-    evaluate_model(model, test)
-    print(recommend(ratings, train, model, 1))
+    movies_df = pd.read_csv('./ml-1m/movies.dat', header=0, names=['movie_id', 'title', 'genres'], sep="::", encoding="iso-8859-1")
 
-if __name__ == "__main__":
-    main()
+    final_ratings = []
+    for i in pred_ratings[:10]:
+        s = movies_df.loc[movies_df['movie_id'] == i[0], 'title'].iloc[0]
+        final_ratings.append(s)
+    
+    return final_ratings
+
+# def main():
+#     ratings, num_users, num_movies, train, test = get_data()
+#     model = import_model('NCF.h5')
+    
+#     # train a new model
+#     if not model:
+#         model = train_model(num_users, num_movies, train, test)
+    
+#     evaluate_model(model, test)
+#     print(recommend(ratings, train, model, 1))
+
+# if __name__ == "__main__":
+#     main()
