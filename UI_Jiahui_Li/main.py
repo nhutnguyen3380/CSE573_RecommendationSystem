@@ -2,12 +2,26 @@
 Created on April 9th, 2023, 7:17:16 PM
 
 @author: Jiahui Li
+Edited by Alexandre Cayer on April 11th
 """
 
 from PyQt5.QtWidgets import QApplication, QMainWindow, QLabel, QLineEdit, QVBoxLayout, QWidget
 from interface import Ui_RecommenderSystem
 import sys
 import pandas as pd
+
+# *** Alex Modification ***
+import MatrixFactorization1
+import NeuralCF
+from sklearn.model_selection import train_test_split
+
+ratings_ncf = pd.read_csv('./ml-1m/ratings.dat', header=0, names=['user_id', 'movie_id', 'rating', 'timestamp'], sep="::")
+train_ncf, test_ncf = train_test_split(ratings_ncf, test_size=0.2, random_state=1)
+model_ncf = NeuralCF.import_model('NCF.h5')
+
+data_mf, movie_list_mf, s_data_mf, test_mf = MatrixFactorization1.get_data()
+model_mf, user_predictions_mf = MatrixFactorization1.train_model(data_mf, s_data_mf, test_mf)
+# *** Alex Modification ***
 
 class MainWindow(QMainWindow, Ui_RecommenderSystem):
     def __init__(self, parent=None):
@@ -24,9 +38,15 @@ class MainWindow(QMainWindow, Ui_RecommenderSystem):
         names_str = '\n'.join(new_rating.loc[new_rating['userId'] == int(user_id), 'movieName'].values.tolist())
 
         self.RM_browser.setText(names_str)
-        
-        self.MF_browser.setText("Matrix Factorization")
-        self.NCF_browser.setText("Neural Collaborative Filtering")
+
+        # *** Alex Modification ***
+        # self.MF_browser.setText("Matrix Factorization")
+        # self.NCF_browser.setText("Neural Collaborative Filtering")
+        # user_id may need type casting - verify this when testing
+        self.MF_browser.setText(MatrixFactorization1.recommend(user_predictions_mf, model_mf, movie_list_mf, user_id))
+
+        self.NCF_browser.setText(NeuralCF.recommend(ratings_ncf, train_ncf, model_ncf, user_id))
+        # *** Alex Modification ***
 
 
 
