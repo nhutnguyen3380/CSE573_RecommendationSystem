@@ -21,7 +21,7 @@ This is Group 7's movie recommendation system. The data we used to train and tes
 * run main.py
 
 ### Evaluation
-* 
+* RMSE
 
 ## Authors
 Aaron Yu  
