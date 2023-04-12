@@ -24,6 +24,9 @@ class MainWindow(QMainWindow, Ui_RecommenderSystem):
         names_str = '\n'.join(new_rating.loc[new_rating['userId'] == int(user_id), 'movieName'].values.tolist())
 
         self.RM_browser.setText(names_str)
+        
+        self.MF_browser.setText("Matrix Factorization")
+        self.NCF_browser.setText("Neural Collaborative Filtering")
 
 
 
