@@ -115,8 +115,6 @@ class Ui_RecommenderSystem(object):
         for i in range(0, users_id.shape[0]):
             self.comboBox.setItemText(i, _translate("MainWindow", str(i+1)))
 
-        self.MF_browser.setText("Matrix Factorization")
-        self.NCF_browser.setText("Neural Collaborative Filtering")
 
         self.MF_label.setText(_translate("RecommenderSystem", "Matrix Factorization"))
         self.NCF_label.setText(_translate("RecommenderSystem", "Neural Collaborative Filtering"))
