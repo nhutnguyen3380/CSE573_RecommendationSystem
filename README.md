@@ -13,7 +13,7 @@ This is Group 7's movie recommendation system. The data we used to train and tes
 
 ## Authors
 Aaron Yu  
-Jiahui Li  
+[Jiahui Li](https://github.com/J1ahuiLi)  
 Malin Tan  
 Alexander Cayer  
 Brightan Hsu  
